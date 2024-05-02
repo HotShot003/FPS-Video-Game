@@ -12,27 +12,29 @@ drawing shapes and images, playing sounds, and handling user input.
 Raycasting is a technique used in game development to create the illusion of 3D environments using 2D graphics.
 It involves casting rays from the player's viewpoint and determining intersections with walls to render the scene.
 
-#Key Features:
+# Key Features:
 
 Raycasting Graphics: Experience a pseudo-3D environment with raycasting rendering.
 Smart Enemy AI: Enemies utilize pathfinding algorithms for strategic behavior.
 Classic FPS Gameplay: Move, shoot, and interact in a nostalgic FPS format.
 
 
-#Controls:
+# Controls:
 
 W, A, S, D: Move forward, left, backward, right.
 Mouse: Look around.
 Left Click: Shoot.
 
-#Contributing:
+# Contributing:
 
 Contributions are welcome! Fork the repository, make your changes, and submit a pull request.
 
-#Credits:
+# Credits:
 
 Pygame: https://www.pygame.org/
+
 Raycasting Tutorial: Lode's Computer Graphics Tutorial
+
 Pathfinding Algorithms: A* Algorithm, Dijkstra's Algorithm
 
 
