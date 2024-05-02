@@ -1,15 +1,17 @@
 import pygame as pg
 import sys
 from settings import *
+from map import *
 
 class Game:
     def __init__(self):
         pg.init()
         self.screen=pg.display.set_mode(RES)  #Initialize a window or screen for display
         self.clock=pg.time.Clock()  #create an object to help track time
+        self.new_game()
         
     def new_game(self):    
-        pass
+        self.map=Map(self)
     
     def update(self):
         pg.display.flip() #Update the full display Surface to the screen
@@ -18,6 +20,7 @@ class Game:
         
     def draw(self):
         self.screen.fill('black')
+        self.map.draw()
         
     def check_events(self):
         for event in pg.event.get():
