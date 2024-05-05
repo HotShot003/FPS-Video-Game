@@ -3,6 +3,7 @@ import sys
 from settings import *
 from map import *
 from player import *
+from raycasting import *
 
 class Game:
     def __init__(self):
@@ -15,9 +16,10 @@ class Game:
     def new_game(self):    
         self.map=Map(self)
         self.player = Player(self)
-    
+        self.raycasting = RayCasting(self)
     def update(self):
         self.player.update()
+        self.raycasting.update()
         pg.display.flip() #Update the full display Surface to the screen
         self.delta_time = self.clock.tick(FPS) #update the clock
         pg.display.set_caption(f'{self.clock.get_fps():.1f}')  #compute the clock framerate
@@ -43,3 +45,4 @@ if __name__=='__main__':
     game=Game()
     game.new_game()
     game.run()
+    
