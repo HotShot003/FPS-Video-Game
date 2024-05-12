@@ -7,6 +7,8 @@ from raycasting import *
 from object_renderer import *
 from sprite_object import *
 from object_handler import *
+from weapon import *
+from sound import *
 
 class Game:
     def __init__(self):
@@ -23,6 +25,8 @@ class Game:
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
         self.object_handler = ObjectHandler(self)
+        self.weapon = Weapon(self)
+        self.sound = Sound(self)
         # self.static_sprite = SpriteObject(self)
         # self.animated_sprites = AnimatedSprite(self)
         
@@ -31,6 +35,7 @@ class Game:
         self.player.update()
         self.raycasting.update()
         self.object_handler.update()
+        self.weapon.update()
         # self.static_sprite.update()
         # self.animated_sprites.update()
         pg.display.flip() #Update the full display Surface to the screen
@@ -40,6 +45,7 @@ class Game:
     def draw(self):
         # self.screen.fill('black')
         self.object_renderer.draw()
+        self.weapon.draw()
         # self.map.draw()
         # self.player.draw()
         
@@ -48,7 +54,7 @@ class Game:
             if  event.type==pg.QUIT or (event.type == pg.KEYDOWN and event.key==pg.K_ESCAPE):
                 pg.quit()  #uninitialize all pygame modules
                 sys.exit() 
-    
+            self.player.single_fire_event(event)
     def run(self):
         while True:
             self.check_events()
@@ -59,4 +65,9 @@ if __name__=='__main__':
     game=Game()
     game.new_game()
     game.run()
+
+
+
+
+
     
