@@ -17,6 +17,9 @@ class Game:
         self.screen=pg.display.set_mode(RES)  #Initialize a window or screen for display
         self.clock=pg.time.Clock()  #create an object to help track time
         self.delta_time=1
+        self.global_trigger = False
+        self.global_event = pg.USEREVENT + 0
+        pg.time.set_timer(self.global_event,80)
         self.new_game()
         
     def new_game(self):    
@@ -43,17 +46,20 @@ class Game:
         pg.display.set_caption(f'{self.clock.get_fps():.1f}')  #compute the clock framerate
         
     def draw(self):
-        # self.screen.fill('black')
         self.object_renderer.draw()
         self.weapon.draw()
+        # self.screen.fill('black')
         # self.map.draw()
         # self.player.draw()
         
     def check_events(self):
+        self.global_trigger =False
         for event in pg.event.get():
             if  event.type==pg.QUIT or (event.type == pg.KEYDOWN and event.key==pg.K_ESCAPE):
                 pg.quit()  #uninitialize all pygame modules
                 sys.exit() 
+            elif event.type == self.global_event:
+                self.global_trigger = True                
             self.player.single_fire_event(event)
     def run(self):
         while True:
@@ -65,4 +71,4 @@ if __name__=='__main__':
     game=Game()
     game.new_game()
     game.run()
- 
+  
