@@ -39,6 +39,7 @@ class ObjectHandler:
         
         # npc map
         add_npc(NPC(game))
+        add_npc(NPC(game,pos=(11.5,4.5)))
     
     def update(self):
         [sprite.update() for sprite in self.sprite_list]
