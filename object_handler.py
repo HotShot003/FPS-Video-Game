@@ -1,6 +1,6 @@
 from sprite_object import *
 from npc import *
-
+from random import choices , randrange
 class ObjectHandler:
     def __init__(self,game):
         self.game = game 
@@ -13,6 +13,13 @@ class ObjectHandler:
         add_npc = self.add_npc
         self.npc_positions = {}
         
+         # spawn npc
+        self.enemies = 5  # npc count
+        self.npc_types = [SoldierNPC, CacoDemonNPC, CyberDemonNPC]
+        self.weights = [70, 20, 10]
+        self.restricted_area = {(i, j) for i in range(10) for j in range(10)}
+        self.spawn_npc()
+
         
         add_sprite(AnimatedSprite(game))
         add_sprite(AnimatedSprite(game, pos=(1.5, 1.5)))
@@ -36,13 +43,31 @@ class ObjectHandler:
         add_sprite(AnimatedSprite(game, pos=(14.5, 30.5)))
         add_sprite(AnimatedSprite(game, pos=(1.5, 30.5)))
         add_sprite(AnimatedSprite(game, pos=(1.5, 24.5)))        
-        
         # npc map
-        add_npc(NPC(game, pos=(11.0, 19.0)))
-        add_npc(NPC(game,pos=(11.5,4.5)))
-        add_npc(NPC(game, pos=(13.5, 6.5)))
-        add_npc(NPC(game, pos=(4.0, 29.0)))
+        # add_npc(SoldierNPC(game, pos=(11.0, 19.0)))
+        # add_npc(SoldierNPC(game, pos=(11.5, 4.5)))
+        # add_npc(SoldierNPC(game, pos=(13.5, 6.5)))
+        # add_npc(SoldierNPC(game, pos=(2.0, 20.0)))
+        # # add_npc(SoldierNPC(game, pos=(4.0, 29.0)))
+        # add_npc(CacoDemonNPC(game, pos=(5.5, 14.5)))
+        # # add_npc(CacoDemonNPC(game, pos=(5.5, 16.5)))
+        # add_npc(CyberDemonNPC(game, pos=(14.5, 25.5)))
 
+    def spawn_npc(self):
+        for i in range(self.enemies):
+                npc = choices(self.npc_types, self.weights)[0]
+                pos = x, y = randrange(self.game.map.cols), randrange(self.game.map.rows)
+                while (pos in self.game.map.world_map) or (pos in self.restricted_area):
+                    pos = x, y = randrange(self.game.map.cols), randrange(self.game.map.rows)
+                self.add_npc(npc(self.game, pos=(x + 0.5, y + 0.5)))    
+    def check_win(self):
+        if not self.npc_list:  # Check if the NPC list is empty
+            self.game.object_renderer.win()  # Display victory image
+            pg.display.flip()
+            pg.time.delay(1500)
+            self.game.new_game()
+
+    
     
     def update(self):
         self.npc_positions = {npc.map_pos for npc in self.npc_list if npc.alive}
@@ -55,3 +80,4 @@ class ObjectHandler:
     
     def add_sprite(self,sprite):
         self.sprite_list.append(sprite)       
+    

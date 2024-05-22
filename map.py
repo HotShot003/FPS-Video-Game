@@ -44,8 +44,10 @@ class Map:
     def __init__(self, game):
         self.game = game
         self.mini_map = mini_map
-        self.world_map={}
-        self.get_map()
+        self.world_map = {}
+        self.rows = len(self.mini_map)
+        self.cols = len(self.mini_map[0])
+        self.get_map()  
         
     def get_map(self):
         for j , row in enumerate(self.mini_map):

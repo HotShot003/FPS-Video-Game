@@ -11,7 +11,20 @@ class Player:
         self.shot = False
         self.health = PLAYER_MAX_HEALTH
         self.rel = 0
+        self.health_recovery_delay = 700
+        self.time_prev = pg.time.get_ticks()
+        self.diag_move_corr = 1 / math.sqrt(2)
     
+    def recovery_health(self):
+        if self.check_health_recovery_delay() and self.health < PLAYER_MAX_HEALTH:
+            self.health +=1
+        
+    def check_health_recovery_delay(self):
+        time_now = pg.time.get_ticks()
+        if time_now - self.time_prev > self.health_recovery_delay:
+            self.time_prev = time_now
+            return True
+        
     def check_game_over(self):
         if self.health < 1:
             self.game.object_renderer.game_over()
@@ -42,7 +55,7 @@ class Player:
         speed_cos=speed*cos_a
         
         keys = pg.key.get_pressed()
-        
+        num_key_pressed = -1        
         if keys[pg.K_w]:
             dx +=speed_cos
             dy +=speed_sin
@@ -58,7 +71,10 @@ class Player:
         if keys[pg.K_d]:
             dx +=-speed_sin
             dy += speed_cos  
-        
+        # diag move correction
+        if num_key_pressed:
+            dx *= self.diag_move_corr
+            dy *= self.diag_move_corr
         # self.x +=dx
         # self.y +=dy
         self.check_walls_collision(dx,dy)
@@ -68,7 +84,7 @@ class Player:
         
         # if keys[pg.K_RIGHT]:
         #     self.angle += PLAYER_ROT_SPEED * self.game.delta_time  
-        # self.angle %= math.tau
+        self.angle %= math.tau
         
     def check_walls(self,x,y):
         return(x,y)  not in self.game.map.world_map  
@@ -80,11 +96,11 @@ class Player:
         if self.check_walls(int(self.x),int(self.y + dy * scale)):
             self.y+=dy    
     
-    def draw (self):
-        # pg.draw.line(self.game.screen,'yellow',(self.x*100,self.y*100),
-        #                 (self.x*100 + WIDTH * math.cos(self.angle),
-        #                 self.y * 100+WIDTH * math.sin(self.angle)),2)
-        pg.draw.circle(self.game.screen,'green',(self.x * 100 , self.y * 100),15)                     
+    def draw(self):
+        pg.draw.line(self.game.screen, 'yellow', (self.x * 100, self.y * 100),
+                    (self.x * 100 + WIDTH * math.cos(self.angle),
+                     self.y * 100 + WIDTH * math. sin(self.angle)), 2)
+        pg.draw.circle(self.game.screen, 'green', (self.x * 100, self.y * 100), 15)                     
     
     def mouse_control(self):
         mx,my = pg.mouse.get_pos()
@@ -98,6 +114,7 @@ class Player:
     def update(self):
         self.movement()
         self.mouse_control()
+        self.recovery_health()
     
     @property
     def pos(self):

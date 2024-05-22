@@ -34,7 +34,8 @@ class Game:
         self.pathfinding=PathFinding(self)
         # self.static_sprite = SpriteObject(self)
         # self.animated_sprites = AnimatedSprite(self)
-        
+        pg.mixer.music.play(-1)
+
         
     def update(self):
         self.player.update()
