@@ -15,7 +15,7 @@ class ObjectRenderer:
         
         self.digits = dict(zip(map(str,range(11)),self.digit_images))
         self.game_over_image = self.get_texture('resources/textures/gameover1.png',RES)
-        self.win_image = self.get_texture('resources/textures/win.png', RES)
+        self.win_image = self.get_texture('resources/textures/victory.png', RES)
 
     def draw(self):
         self.draw_background()

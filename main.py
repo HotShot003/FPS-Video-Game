@@ -1,15 +1,14 @@
-import pygame as pg
 import sys
-from settings import *
+
 from map import *
+from object_handler import *
+from object_renderer import *
+from pathfinding import *
 from player import *
 from raycasting import *
-from object_renderer import *
-from sprite_object import *
-from object_handler import *
-from weapon import *
 from sound import *
-from pathfinding import *
+from weapon import *
+
 
 class Game:
     def __init__(self):
@@ -72,5 +71,5 @@ class Game:
             
 if __name__=='__main__':
     game=Game()
-    game.new_game()
+    # game.new_game()
     game.run()
