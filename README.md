@@ -1,4 +1,5 @@
 # MyFirstVideoGame
+
 # Summary:
 
 MyFirstGame is a first-person shooter (FPS) game built using Python and Pygame. Inspired by classic titles like Wolfenstein 3D and Doom, 
@@ -25,9 +26,31 @@ W, A, S, D: Move forward, left, backward, right.
 Mouse: Look around.
 Left Click: Shoot.
 
+## System Requirements
+
+- Python 3.x
+- Windows(Any)
+
+## Installation
+
+1. **Clone the repository**:
+
+  - Clone Repo : Git Clone - https://github.com/HotShot003/FPS-Video-Game.git
+   
+2. **Navigate to the project directory**:
+
+  - cd MyFirstGame
+ 
+3. **Run the game**:
+    
+  - python main.py
+
+
 # Contributing:
 
 Contributions are welcome! Fork the repository, make your changes, and submit a pull request.
+
+---
 
 # Credits:
 
