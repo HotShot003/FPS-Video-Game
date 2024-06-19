@@ -19,6 +19,9 @@ Raycasting Graphics: Experience a pseudo-3D environment with raycasting renderin
 Smart Enemy AI: Enemies utilize pathfinding algorithms for strategic behavior.
 Classic FPS Gameplay: Move, shoot, and interact in a nostalgic FPS format.
 
+# Tech Stack :
+![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white) 
+![Python](https://img.shields.io/badge/pygame-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white) 
 
 # Controls:
 
@@ -39,7 +42,6 @@ Left Click: Shoot.
    
 2. **Navigate to the project directory**:
 
-  - cd MyFirstGame
  
 3. **Run the game**:
     
