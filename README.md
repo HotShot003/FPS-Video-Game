@@ -11,6 +11,7 @@ Pygame is a set of Python modules designed for writing video games. It provides 
 drawing shapes and images, playing sounds, and handling user input.
 
 Raycasting is a technique used in game development to create the illusion of 3D environments using 2D graphics.
+
 It involves casting rays from the player's viewpoint and determining intersections with walls to render the scene.
 
 # Key Features:
@@ -26,12 +27,15 @@ Classic FPS Gameplay: Move, shoot, and interact in a nostalgic FPS format.
 # Controls:
 
 W, A, S, D: Move forward, left, backward, right.
+
 Mouse: Look around.
+
 Left Click: Shoot.
 
 ## System Requirements
 
 - Python 3.x
+  
 - Windows(Any)
 
 ## Installation
